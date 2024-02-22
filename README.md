@@ -16,9 +16,9 @@ It's based on the work for a web application that builds a UI around this concep
 
 Computers operate in 1s and 0s. We might see an "a" in a text file, but a computer will see "01100001". The fact that we're just dealing with numbers is important to databending: when we run an audio file through an EQ or an image through a filter, we might think the application has some sense for what a song or a picture is, but ultimately it's just doing math. So what happens when we run an image through an EQ? Or an audio file through an image filter? That's one sure-fire way to break things!
 
-A common example of databending (and how I learned about it) was taking the free audio software [Audacity](https://www.audacityteam.org/), using its "raw data" import option to load in an image, running some audio effects over the image, and exporting the bits back out as an image file.
+A common example of databending (and how I learned about it) was taking the free audio software [Audacity](https://www.audacityteam.org/), using its "raw data" import option to load in an image, running some audio effects over the image, and exporting the bits back out as an image file. Here's an example of an image bent with Audacity:
 
-// TODO add image
+![Image that has been databent with Audacity](images/graffiti_audacity.png)
 
 It's fairly easy to do, but it's also fairly easy to do irrepairable damage to the image file. That's because in most files there's a section of the bits devoted to the data and there's a section of the bits devoted to metadata (the header). Running the header through the databending process can result in a file that can't be opened. Applications for reading the file can't understand the metadata at a certain point.
 
@@ -154,7 +154,9 @@ context.putImageData(imageDataContainer, 0, 0)
 
 ([putImageData](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData))
 
-// TODO add image
+Here's the same image databent by playing with the demo code:
+
+![Image that has been databent with Audacity](images/graffiti_databend.png)
 
 ## Conclusion
 
