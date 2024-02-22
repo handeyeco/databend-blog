@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Web databending demo</title>
+</head>
+
+<body>
+    <div id="image-mount"></div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+<script>
+    const cat = new Image();
+    cat.onload = onImageLoad
+    cat.src = './images/cat.jpg';
+
+    async function processAudioData(audioData) {
+        const audioContext = Tone.getContext()
+
+        const rendered = await Tone.Offline(() => {
+            // Create Web audio buffer to load audio data into
+            const buffer = audioContext.createBuffer(1, audioData.length, audioContext.sampleRate)
+            const buffering = buffer.getChannelData(0)
+
+            for (let i = 0; i < audioData.length; i++) {
+                buffering[i] = audioData[i]
+            }
+
+            // Create Tone buffer and some effects;
+            // connect them all together and to destination
+            const bufferNode = new Tone.ToneBufferSource(buffer)
+            const phaser = new Tone.Phaser({
+                frequency: 20,
+            })
+            const chebyshev = new Tone.Chebyshev({
+                order: 2
+            })
+            bufferNode.connect(phaser)
+            phaser.connect(chebyshev)
+            chebyshev.toDestination()
+
+            // Start the buffer playing
+            bufferNode.start()
+        }, audioData.length / audioContext.sampleRate, 1, audioContext.sampleRate)
+
+        const processedAudioData = rendered.getChannelData(0)
+        return processedAudioData
+    }
+
+    function scale(number, inMin, inMax, outMin, outMax) {
+        return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    }
+
+    // Convert image (0 to 255) to audio (-1 to 1)
+    function convertImageDataToAudioData(imageData) {
+        const audioData = new Float32Array(imageData.length)
+        for (let i = 0; i < imageData.length; i++) {
+            audioData[i] = scale(imageData[i], 0, 255, -1, 1)
+        }
+        return audioData
+    }
+
+    // Convert audio (-1 to 1) to image (0 to 255)
+    // (mutates the original imageData array with the new data)
+    function convertAudioDataToImageData(imageData, audioData) {
+        for (let i = 0; i < audioData.length; i++) {
+            imageData[i] = scale(audioData[i], -1, 1, 0, 255)
+        }
+    }
+
+    async function onImageLoad() {
+        const { width, height } = cat
+
+        // Create a canvas twice the height of the image
+        // so we can show before/after
+        const imageMount = document.getElementById('image-mount')
+        const canvas = document.createElement('canvas')
+        canvas.width = width
+        canvas.height = height * 2
+        imageMount.appendChild(canvas)
+
+        // Draw the original and get the image data
+        const context = canvas.getContext('2d')
+        context.drawImage(cat, 0, 0, width, height)
+        const imageDataContainer = context.getImageData(0, 0, width, height)
+        const imageData = imageDataContainer.data
+
+        // Process the image by running it through Tone.js
+        const audioData = convertImageDataToAudioData(imageData)
+        const processedAudioData = await processAudioData(audioData)
+        convertAudioDataToImageData(imageData, processedAudioData)
+
+        // Draw the modified image data
+        context.putImageData(imageDataContainer, 0, height)
+    }
+</script>
+
+</html>
