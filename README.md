@@ -1,5 +1,17 @@
 # Databending with Web APIs
 
+This repo hosts this blog post and a simplied example:
+
+- [Source](https://github.com/handeyeco/databend-blog)
+- [Demo](https://handeyeco.github.io/databend-blog/)
+
+It's based on the work for a web application that builds a UI around this concept:
+
+- [Source](https://github.com/handeyeco/databend)
+- [Application](https://handeyeco.github.io/databend/)
+
+## Intro
+
 [Databending](https://en.wikipedia.org/wiki/Databending), like circuit bending, is a way of creatively breaking technology to generate unique and unexpected results. In circuit bending the idea is to mess around with the underlying electronics: modding, jumping, and shorting to find interesting ways to break circuits. In databending the idea is to break things in the data layer.
 
 Computers operate in 1s and 0s. We might see an "a" in a text file, but a computer will see "01100001". The fact that we're just dealing with numbers is important to databending: when we run an audio file through an EQ or an image through a filter, we might think the application has some sense for what a song or a picture is, but ultimately it's just doing math. So what happens when we run an image through an EQ? Or an audio file through an image filter? That's one sure-fire way to break things!
