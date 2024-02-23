@@ -86,7 +86,7 @@ So what do you have at this point? You're now the proud owner of a `Uint8Clamped
 Audio works with floats between -1 and 1, so we need to do a conversion:
 
 ```JS
-function scale (number, inMin, inMax, outMin, outMax) {
+function scale(number, inMin, inMax, outMin, outMax) {
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 }
 
@@ -108,7 +108,7 @@ At this point we have a Float32Array that looks enough like audio that we can pa
 
 I also add an option to split the color channels before running the data through Tone.js: remember that the array is sorted as [R, G, B, A], this option creates four arrays ([R], [G], [B], [A]), runs them individually through the audio effects, and then merges them again on the other side. It's hard to explain this, but think about a delay: a delay takes information from one position in the array and applies it to another position. By processing all the colors together, information from the red color might affect the blue color or alpha values. By splitting them, red will only affect red. Also it gives me the ability to only apply the effect to one color at a time.
 
-_Anyway_ here's what it looks like in the demo when we run the data through Tone.js:
+_Anyway_ here's what it looks like in the demo when we run the data through Tone.js (without all of that added complexity):
 
 ```JS
 async function processAudioData(audioData) {
