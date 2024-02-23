@@ -1,3 +1,7 @@
+![Image that has been databent with my custom databend application](images/graffiti_application.png)
+
+An example of an image that was databent using my [web-based databending application](https://handeyeco.github.io/databend/).
+
 # Databending with Web APIs
 
 This repo hosts this blog post and a simplied example:
