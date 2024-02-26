@@ -4,7 +4,7 @@ An example of an image that was databent using my [web-based databending applica
 
 # Databending with Web APIs
 
-This repo hosts this blog post and a simplied example:
+This repo hosts this blog post and a simplified example:
 
 - [Source](https://github.com/handeyeco/databend-blog)
 - [Demo](https://handeyeco.github.io/databend-blog/)
@@ -26,7 +26,7 @@ A common example of databending (and how I learned about it) is to take the free
 
 ([Original image source](https://unsplash.com/photos/green-and-yellow-abstract-painting-WKQt_X-SKFI); [Audacity databending tutorial](https://www.youtube.com/watch?v=cXjwJPz4qi0))
 
-It's fairly easy to do, but it's also fairly easy to do irrepairable damage to the image file. That's because in most files there's a section of the bits devoted to the data and there's a section of the bits devoted to metadata (the header). Running the header through the databending process can result in a file that can't be opened because at a certain point applications can't understand enough of the metadata to open the file.
+It's fairly easy to do, but it's also fairly easy to do irreparable damage to the image file. That's because in most files there's a section of the bits devoted to the data and there's a section of the bits devoted to metadata (the header). Running the header through the databending process can result in a file that can't be opened because at a certain point applications can't understand enough of the metadata to open the file.
 
 It's also a long-ish iteration cycle. Audacity isn't showing a preview of the image you're destroying because it doesn't know it's working with an image; Audacity is just doing math with a bunch of bits you handed it.
 
@@ -155,7 +155,7 @@ async function processAudioData(audioData) {
 }
 ```
 
-([Tone.getContext](https://tonejs.github.io/docs/14.7.77/fn/getContext), [Tone.Offline](https://tonejs.github.io/docs/14.7.77/fn/Offline), [Tone.ToneBufferSource](https://tonejs.github.io/docs/14.7.77/ToneBufferSource), [Tone.Phaser](https://tonejs.github.io/docs/14.7.77/Phaser), [Tone.Chebyshev](https://tonejs.github.io/docs/14.7.77/Chebyshev), [Tone.toDesination](https://tonejs.github.io/docs/14.7.77/Destination), [createBuffer](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/createBuffer), [getChannelData](https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer/getChannelData), [connect](https://developer.mozilla.org/en-US/docs/Web/API/AudioNode/connect))
+([Tone.getContext](https://tonejs.github.io/docs/14.7.77/fn/getContext), [Tone.Offline](https://tonejs.github.io/docs/14.7.77/fn/Offline), [Tone.ToneBufferSource](https://tonejs.github.io/docs/14.7.77/ToneBufferSource), [Tone.Phaser](https://tonejs.github.io/docs/14.7.77/Phaser), [Tone.Chebyshev](https://tonejs.github.io/docs/14.7.77/Chebyshev), [Tone.toDestination](https://tonejs.github.io/docs/14.7.77/Destination), [createBuffer](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/createBuffer), [getChannelData](https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer/getChannelData), [connect](https://developer.mozilla.org/en-US/docs/Web/API/AudioNode/connect))
 
 Steps:
 
